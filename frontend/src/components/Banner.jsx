@@ -1,14 +1,15 @@
 import React from "react";
+import EffectCard from "./EffectCard";
 
 export const Banner = () => {
   return (
     <div className="px-4 lg:px-24 bg-teal-100 flex items-center">
       <div className=" flex w-full flex-col md:flex-row justify-between items-center gap-12 py-40">
         <div className="md:w-1/2 space-y-7 h-full">
-          <h2 className="text-3xl font-bold leading-snug text-black">
-            Buy and Sell Your Books
+          <h2 className="text-4xl font-bold leading-snug text-black">
+            Buy and Sell Your Books<span className="text-blue-700">for the Best Prices</span>
           </h2>
-          <p>
+          <p className="md:w-4/5 ">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
             ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
@@ -28,7 +29,7 @@ export const Banner = () => {
             Search
           </button>
         </div>
-        <div>Right Side</div>
+        <div><EffectCard/></div>
       </div>
     </div>
   );
