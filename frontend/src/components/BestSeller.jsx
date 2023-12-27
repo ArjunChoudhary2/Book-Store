@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import BookCard from './BookCard';
 
-const FavouriteBooks = () => {
+const BestSeller = () => {
     const [books, setBooks] = useState([]);
 
     useEffect(() => {
         fetch("http://localhost:5000/all-books")
             .then(res => res.json())
             .then(data => {
-                setBooks(data);
+                setBooks(data.slice(0,8));
                 console.log('Fetched Books:', data);
             })
             .catch(error => {
@@ -27,4 +27,4 @@ const FavouriteBooks = () => {
     );
 };
 
-export default FavouriteBooks;
+export default BestSeller;

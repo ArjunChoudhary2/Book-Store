@@ -76,16 +76,24 @@ async function run() {
       res.send(result);
     });
 
+    //to get a single book data
+    app.get("/book/:id", async (req, res) => {
+      const id = req.params.id;
+      const filter = { _id: new ObjectId(id) };
+      const result = await booksInventory.findOne(filter);
+      res.send(result);
+    });
+
     //find by book category
     app.get("/book", async (req, res) => {
-        let query = {};
-        if(req.query?.genre ){
-            query = {genre : req.query.genre}
-        }
+      let query = {};
+      if (req.query?.genre) {
+        query = { genre: req.query.genre };
+      }
 
-        const result = await booksInventory.find(query).toArray();
-        res.send(result);
-      });
+      const result = await booksInventory.find(query).toArray();
+      res.send(result);
+    });
 
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
