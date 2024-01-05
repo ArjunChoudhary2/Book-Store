@@ -32,8 +32,8 @@ const UploadBook = () => {
   //handling form submit
   const handleUpload = (e) => {
     e.preventDefault();
-    const form =  e.target;
-    
+    const form = e.target;
+
     const title = form.title.value;
     const author = form.author.value;
     const imageURL = form.imageURL.value;
@@ -42,15 +42,38 @@ const UploadBook = () => {
     const pdfURL = form.pdfURL.value;
 
     const bookObj = {
-      title,author,imageURL,genre,description,pdfURL
-    }
-    console.log(bookObj)
-  }
+      title,
+      author,
+      imageURL,
+      genre,
+      description,
+      pdfURL,
+    };
+    console.log(bookObj);
+
+    fetch("http://localhost:5000/upload-book", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(bookObj)
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      alert("Book Uploaded successfully");
+      form.reset();
+    });
+  };
+
+  
 
   return (
     <div className="px-4 my-12">
       <h2 className="mb-8 text-3xl font-bold">Upload a Book</h2>
-      <form onSubmit={handleUpload} className="flex lg:w-[1180px] flex-col flex-wrap gap-4">
+      <form
+        onSubmit={handleUpload}
+        className="flex lg:w-[1180px] flex-col flex-wrap gap-4"
+      >
         <div className="flex gap-8">
           {/*First Row */}
           <div className="lg:w-1/2">
@@ -137,7 +160,9 @@ const UploadBook = () => {
           sizing="lg"
         />
 
-        <Button type="submit" color="gray" className="mt-5">Upload</Button>
+        <Button type="submit" color="gray" className="mt-5">
+          Upload
+        </Button>
       </form>
     </div>
   );
