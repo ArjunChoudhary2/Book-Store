@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Table } from "flowbite-react";
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom";
+import { FaEdit } from "react-icons/fa";
+import { FaDeleteLeft } from "react-icons/fa6";
 
 const ManageBooks = () => {
   const [allBooks, setAllBooks] = useState([]);
@@ -10,7 +12,16 @@ const ManageBooks = () => {
       .then((data) => setAllBooks(data));
   }, []);
 
-  console.log(allBooks);
+  //delete a book
+  const handleDelete = (id) => {
+    fetch(`http://localhost:5000/book/${id}`, {
+      method: "DELETE",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        alert("Book is deleted successfully!");
+      });
+  };
 
   return (
     <div className="px-4 my-12">
@@ -23,7 +34,7 @@ const ManageBooks = () => {
           <Table.HeadCell>Category</Table.HeadCell>
           <Table.HeadCell>Price</Table.HeadCell>
           <Table.HeadCell>
-            <span>Edit</span>
+            <span>Edit or Manage</span>
           </Table.HeadCell>
         </Table.Head>
 
@@ -31,19 +42,27 @@ const ManageBooks = () => {
           <Table.Body className="divide-y">
             <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
               <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-                {index+1}
+                {index + 1}
               </Table.Cell>
               <Table.Cell>{book.title}</Table.Cell>
               <Table.Cell>{book.author}</Table.Cell>
               <Table.Cell>{book.genre}</Table.Cell>
               <Table.Cell>$2999</Table.Cell>
               <Table.Cell>
-                <Link
-                  href="#"
-                  className="font-medium text-cyan-600 hover:underline dark:text-cyan-500"
-                >
-                  Edit
-                </Link>
+                <div className="flex">
+                  <Link
+                    to={`/admin/dashboard/edit-book/${book._id}`}
+                    className="font-medium text-cyan-600 hover:underline dark:text-cyan-500 mr-7"
+                  >
+                    <FaEdit className=" text-lg" />
+                  </Link>
+                  <button
+                    onClick={() => handleDelete(book._id)}
+                    className="bg-red-600 px-4 py-1 font-semibold text-white rounded-sm hover:bg-sky-600"
+                  >
+                    <FaDeleteLeft />
+                  </button>
+                </div>
               </Table.Cell>
             </Table.Row>
           </Table.Body>
