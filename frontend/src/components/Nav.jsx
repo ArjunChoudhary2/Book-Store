@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { FaBarsStaggered, FaBlog, FaXmark } from "react-icons/fa6";
+import { AuthContext } from "../context/AuthProvider";
 
 const Nav = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSticky, setIsSticky] = useState(false);
+  const { user } = useContext(AuthContext);
 
   //toggle Menu
   const toggleMenu = () => {
@@ -34,7 +36,7 @@ const Nav = () => {
     { link: "About", path: "/about" },
     { link: "Shop", path: "/shop" },
     { link: "Sell-Book", path: "/admin/dashboard" },
-    { link: "Blog", path: "/blog" },
+    { link: "Profile", path: "/profile" },
   ];
 
   return (
@@ -67,7 +69,21 @@ const Nav = () => {
           </ul>
           <div className="space-x-12 hidden lg:flex item-center">
             <button>
-              <FaBarsStaggered className="w-5 hover:text-blue-700" />
+              {user ? (
+                <Link
+                  to="/profile"
+                  className="block text-base text-black uppercase cursor-pointer hover:text-blue-700"
+                >
+                  {user.email}
+                </Link>
+              ) : (
+                <Link
+                  to="/signup"
+                  className="block text-base text-black uppercase cursor-pointer hover:text-blue-700"
+                >
+                  Sign In
+                </Link>
+              )}
             </button>
           </div>
         </div>

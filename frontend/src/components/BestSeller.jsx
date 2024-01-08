@@ -9,7 +9,6 @@ const BestSeller = () => {
             .then(res => res.json())
             .then(data => {
                 setBooks(data.slice(0,8));
-                console.log('Fetched Books:', data);
             })
             .catch(error => {
                 console.error('Error fetching data:', error);
