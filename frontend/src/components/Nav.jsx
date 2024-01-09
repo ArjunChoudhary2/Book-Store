@@ -26,7 +26,7 @@ const Nav = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 100) {
+      if (window.scrollY > 10) {
         setIsSticky(true);
       } else {
         setIsSticky(false);
@@ -51,7 +51,7 @@ const Nav = () => {
     <header className="w-full bg-transparent fixed top-0 left-0 right-0 transition-all ease-in duration-300">
       <nav
         className={`py-4 lg:px-24 px-4 ${
-          isSticky ? "sticky top-0 left-0 right-0 bg-blue-300" : ""
+          isSticky ? "sticky top-0 left-0 right-0 bg-teal-100" : "bg-teal-100"
         }`}
       >
         <div className="flex justify-between items-center text-base gap-8">

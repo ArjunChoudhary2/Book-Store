@@ -47,7 +47,7 @@ const BookCard = ({ headline, books }) => {
           modules={[Pagination]}
           className="mySwiper"
         >
-          {books.map((book) => (
+          {books?.map((book) => (
             <SwiperSlide key={book._id}>
               <div className="my-8">
                 <Link to={`/book/${book._id}`}>
