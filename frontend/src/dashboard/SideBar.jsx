@@ -1,5 +1,7 @@
 import React, { useContext } from "react";
 import { Sidebar } from "flowbite-react";
+import { FaBlog } from "react-icons/fa6";
+import { Link, useNavigate } from "react-router-dom";
 import {
   HiArchive,
   HiArrowSmRight,
@@ -22,12 +24,16 @@ const SideBar = () => {
   const from = location.state?.form?.pathname || "/";
 
   const { logout } = useContext(AuthContext);
+  const navigatekar = () => {
+    navigate("/");
+  };
   const handleLogout = () => {
     logout()
       .then(() => {
-        
-        navigate(from, { replace: true });
+        console.log("done");
+
         alert("Sign-out successful!!!");
+        navigate(from, { replace: true });
       })
       .catch((error) => {});
   };
@@ -35,31 +41,19 @@ const SideBar = () => {
   return (
     <div>
       <Sidebar aria-label="Sidebar with logo branding example">
-        <Sidebar.Logo href="/" img={userImg} imgAlt="Flowbite logo">
-          Flowbite
-        </Sidebar.Logo>
+        <Link
+          to="/"
+          className="text-2xl font-bold text-blue-700 flex items-center gap-2 py-5 mx-4"
+        >
+          <FaBlog className="inline-block" /> PageTurner
+        </Link>
         <Sidebar.Items>
           <Sidebar.ItemGroup>
-            <Sidebar.Item href="/admin/dashboard" icon={HiChartPie}>
-              Dashboard
-            </Sidebar.Item>
             <Sidebar.Item href="/admin/dashboard/upload" icon={HiCloudUpload}>
               Upload Book
             </Sidebar.Item>
             <Sidebar.Item href="/admin/dashboard/manage" icon={HiArchive}>
               Manage Books
-            </Sidebar.Item>
-            <Sidebar.Item href="#" icon={HiUser}>
-              Users
-            </Sidebar.Item>
-            <Sidebar.Item href="#" icon={HiShoppingBag}>
-              Products
-            </Sidebar.Item>
-            <Sidebar.Item href="/login" icon={HiArrowSmRight}>
-              Sign In
-            </Sidebar.Item>
-            <Sidebar.Item icon={HiTable}>
-              <button onClick={handleLogout}>Log Out</button>
             </Sidebar.Item>
           </Sidebar.ItemGroup>
         </Sidebar.Items>

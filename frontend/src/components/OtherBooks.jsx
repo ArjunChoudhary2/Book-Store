@@ -8,7 +8,7 @@ const OtherBooks = () => {
     fetch("http://localhost:5000/all-books")
       .then((res) => res.json())
       .then((data) => {
-        setBooks(data.slice(4, 8));
+        setBooks(data.slice(4, 12));
       })
       .catch((error) => {
         console.error("Error fetching data:", error);

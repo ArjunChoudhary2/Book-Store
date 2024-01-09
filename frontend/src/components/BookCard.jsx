@@ -8,7 +8,7 @@ import "swiper/css/pagination";
 
 import "../styles/BookCard.css";
 
-import { FaCartShopping } from 'react-icons/fa6'
+import { FaCartShopping } from "react-icons/fa6";
 
 // import required modules
 import { Pagination } from "swiper/modules";
@@ -39,8 +39,8 @@ const BookCard = ({ headline, books }) => {
               slidesPerView: 4,
               spaceBetween: 40,
             },
-            1024: {
-              slidesPerView: 5,
+            1280: {
+              slidesPerView: 6,
               spaceBetween: 50,
             },
           }}
@@ -49,20 +49,22 @@ const BookCard = ({ headline, books }) => {
         >
           {books.map((book) => (
             <SwiperSlide key={book._id}>
-              <Link to={`/book/${book._id}`}>
-                <div className="relative">
-                  <img src={book.imageURL} alt="" />
-                  <div className="absolute top-3 right-3 bg-blue-600 hover:bg-black p-2 rounded">
-                    <FaCartShopping className="w-4 h-4 text-white"/>
+              <div className="my-8">
+                <Link to={`/book/${book._id}`}>
+                  <div className="relative bg-slate-400 ">
+                    <img src={book.imageURL} alt="" className="w-full h-full object-cover" />
+                    <div className="absolute top-3 right-3 bg-blue-600 hover:bg-black p-2 rounded">
+                      <FaCartShopping className="w-4 h-4 text-white" />
+                    </div>
                   </div>
-                </div>
-                <div>
                   <div>
-                    <h3>{book.title}</h3>
-                    <p>{book.author}</p>
+                    <div>
+                      <h3>{book.title}</h3>
+                      <p>{book.author}</p>
+                    </div>
                   </div>
-                </div>
-              </Link>
+                </Link>
+              </div>
             </SwiperSlide>
           ))}
         </Swiper>

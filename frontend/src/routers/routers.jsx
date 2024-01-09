@@ -48,14 +48,7 @@ const router = createBrowserRouter([
     path: "/admin/dashboard",
     element: <DashBoardLayout />,
     children: [
-      {
-        path: "/admin/dashboard",
-        element: (
-          <PrivateRoute>
-            <DashBoard />
-          </PrivateRoute>
-        ),
-      },
+      
       {
         path: "/admin/dashboard/upload",
         element: <UploadBook />,
@@ -83,6 +76,10 @@ const router = createBrowserRouter([
   {
     path: "/logout",
     element: <Logout/>,
+  },
+  {
+    path: "/about",
+    element: <About/>,
   },
 ]);
 

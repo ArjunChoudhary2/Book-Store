@@ -1,12 +1,23 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaBarsStaggered, FaBlog, FaXmark } from "react-icons/fa6";
 import { AuthContext } from "../context/AuthProvider";
+import { Button } from "flowbite-react";
 
 const Nav = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSticky, setIsSticky] = useState(false);
-  const { user } = useContext(AuthContext);
+  const { user, logout } = useContext(AuthContext);
+
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    logout()
+      .then(() => {
+        alert("Sign-out successful!!!");
+        navigate("/");
+      })
+      .catch((error) => {});
+  };
 
   //toggle Menu
   const toggleMenu = () => {
@@ -33,10 +44,7 @@ const Nav = () => {
   // navItems
   const navItems = [
     { link: "Home", path: "/" },
-    { link: "About", path: "/about" },
     { link: "Shop", path: "/shop" },
-    { link: "Sell-Book", path: "/admin/dashboard" },
-    { link: "Profile", path: "/profile" },
   ];
 
   return (
@@ -52,7 +60,7 @@ const Nav = () => {
             to="/"
             className="text-2xl font-bold text-blue-700 flex items-center gap-2"
           >
-            <FaBlog className="inline-block" /> Books
+            <FaBlog className="inline-block" /> PageTurner
           </Link>
           {/* nav items for large device */}
           <ul className="md:flex space-x-12 hidden ">
@@ -66,25 +74,46 @@ const Nav = () => {
                 </Link>
               </li>
             ))}
+            {user ? (
+              <li key={"/admin/dashboard/upload"}>
+                <Link
+                  to={"/admin/dashboard/upload"}
+                  className="block text-base text-black uppercase cursor-pointer hover:text-blue-700"
+                >
+                  Sell-book
+                </Link>
+              </li>
+            ) : (
+              ""
+            )}
           </ul>
           <div className="space-x-12 hidden lg:flex item-center">
-            <button>
+            <div>
               {user ? (
-                <Link
-                  to="/profile"
-                  className="block text-base text-black uppercase cursor-pointer hover:text-blue-700"
-                >
-                  {user.email}
-                </Link>
+                <Button onClick={handleLogout} color="gray" pill>
+                  Log out
+                </Button>
               ) : (
-                <Link
-                  to="/signup"
-                  className="block text-base text-black uppercase cursor-pointer hover:text-blue-700"
-                >
-                  Sign In
-                </Link>
+                <div className="flex">
+                  <Link
+                    to="/signup"
+                    className="   text-base text-black uppercase cursor-pointer hover:text-blue-700"
+                  >
+                    <Button color="purple" pill>
+                      Become a Sellar
+                    </Button>
+                  </Link>
+                  <Link
+                    to="/login"
+                    className="   text-base text-black uppercase cursor-pointer hover:text-blue-700"
+                  >
+                    <Button color="white" className="px-3">
+                      Sell Books
+                    </Button>
+                  </Link>
+                </div>
               )}
-            </button>
+            </div>
           </div>
         </div>
 

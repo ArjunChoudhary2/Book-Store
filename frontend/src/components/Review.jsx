@@ -136,6 +136,66 @@ const Review = () => {
               </div>
             </div>
           </SwiperSlide>
+          <SwiperSlide className="shadow-2xl bg-white py-8 px-4 md:m-5 rounded-lg ">
+            <div className="space-y-6">
+              <div className="text-amber-500 flex gap-2">
+                <FaStar />
+                <FaStar />
+                <FaStar />
+                <FaStar />
+              </div>
+              {/* text */}
+              <div className="mt-7 text-left tracking-wider">
+                <p className="mb-5">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  Faucibus ornare suspendisse sed nisi lacus. Platea dictumst
+                  quisque sagittis purus sit. Pellentesque massa placerat duis
+                  ultricies lacus sed turpis. Rutrum tellus pellentesque eu
+                  tincidunt tortor aliquam nulla. Dolor sit amet consectetur
+                  adipiscing elit duis.
+                </p>
+                <Avatar
+                  img={profile}
+                  alt="avatar of Jese"
+                  rounded
+                  className="w-10 mb-4"
+                />
+                <h5 className="text-lg font-medium ">Mark Helsinki</h5>
+                <p className="text-base">CEO, ABC Company</p>
+              </div>
+            </div>
+          </SwiperSlide>
+          <SwiperSlide className="shadow-2xl bg-white py-8 px-4 md:m-5 rounded-lg ">
+            <div className="space-y-6">
+              <div className="text-amber-500 flex gap-2">
+                <FaStar />
+                <FaStar />
+                <FaStar />
+                <FaStar />
+              </div>
+              {/* text */}
+              <div className="mt-7 text-left tracking-wider">
+                <p className="mb-5">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  Faucibus ornare suspendisse sed nisi lacus. Platea dictumst
+                  quisque sagittis purus sit. Pellentesque massa placerat duis
+                  ultricies lacus sed turpis. Rutrum tellus pellentesque eu
+                  tincidunt tortor aliquam nulla. Dolor sit amet consectetur
+                  adipiscing elit duis.
+                </p>
+                <Avatar
+                  img={profile}
+                  alt="avatar of Jese"
+                  rounded
+                  className="w-10 mb-4"
+                />
+                <h5 className="text-lg font-medium ">Mark Helsinki</h5>
+                <p className="text-base">CEO, ABC Company</p>
+              </div>
+            </div>
+          </SwiperSlide>
           
           
         </Swiper>

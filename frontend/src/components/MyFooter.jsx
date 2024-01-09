@@ -12,17 +12,14 @@ const MyFooter = () => {
           href="https://flowbite.com"
           src={FooterImg}
           alt="Flowbite Logo"
-          name="Books"
+          name="PageTurner"
         />
         <Footer.LinkGroup>
-          <Footer.Link href="#">About</Footer.Link>
-          <Footer.Link href="#">Privacy Policy</Footer.Link>
-          <Footer.Link href="#">Licensing</Footer.Link>
-          <Footer.Link href="#">Contact</Footer.Link>
+          <Footer.Link href="/about">About Us</Footer.Link>
         </Footer.LinkGroup>
       </div>
       <Footer.Divider />
-      <Footer.Copyright href="#" by="Books™" year={2024} />
+      <Footer.Copyright href="#" by="PageTurner™" year={2024} />
     </div>
   </Footer>
   )
