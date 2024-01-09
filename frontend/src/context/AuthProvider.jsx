@@ -5,6 +5,8 @@ import {
   createUserWithEmailAndPassword,
   onAuthStateChanged,
   signInWithPopup,
+  signInWithEmailAndPassword,
+  signOut,
 } from "firebase/auth";
 import { useLocation, useNavigate } from "react-router-dom";
 import { GoogleAuthProvider } from "firebase/auth";
@@ -32,16 +34,30 @@ const AuthProvider = ({ children }) => {
     };
   }, []);
 
+  //logout
+  const logout = () => {
+    return signOut(auth);
+  };
+
   const googleProvider = new GoogleAuthProvider();
   const loginWithGoogle = () => {
     setLoading(true);
     return signInWithPopup(auth, googleProvider);
   };
 
+  //sign in with email and password
+  const loginWithPassword = (email, password) => {
+    setLoading(true);
+    return signInWithEmailAndPassword(auth, email, password);
+  };
+
   const authInfo = {
     user,
     createUser,
     loginWithGoogle,
+    loading,
+    logout,
+    loginWithPassword
   };
 
   return (

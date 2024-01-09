@@ -3,7 +3,7 @@ import App from "../App";
 import { Home } from "../pages/Home";
 import { Shop } from "../pages/Shop";
 import About from "../pages/About";
-import Profile from "../pages/Profile"
+import Profile from "../pages/Profile";
 import SingleBook from "../pages/SingleBook";
 import DashBoard from "../dashboard/DashBoard";
 import DashBoardLayout from "../dashboard/DashBoardLayout";
@@ -11,6 +11,9 @@ import UploadBook from "../dashboard/UploadBook";
 import ManageBooks from "../dashboard/ManageBooks";
 import EditBook from "../dashboard/EditBook";
 import SignUp from "../components/SignUp";
+import Login from "../components/Login";
+import PrivateRoute from "../PrivateRoutes/PrivateRoute";
+import Logout from "../components/Logout";
 
 const router = createBrowserRouter([
   {
@@ -47,7 +50,11 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/admin/dashboard",
-        element: <DashBoard />,
+        element: (
+          <PrivateRoute>
+            <DashBoard />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/admin/dashboard/upload",
@@ -68,6 +75,14 @@ const router = createBrowserRouter([
   {
     path: "/signup",
     element: <SignUp />,
+  },
+  {
+    path: "/login",
+    element: <Login />,
+  },
+  {
+    path: "/logout",
+    element: <Logout/>,
   },
 ]);
 

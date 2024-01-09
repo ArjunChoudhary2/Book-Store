@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Sidebar } from "flowbite-react";
 import {
-    HiArchive,
+  HiArchive,
   HiArrowSmRight,
   HiChartPie,
   HiCloudUpload,
@@ -12,9 +12,26 @@ import {
   HiViewBoards,
 } from "react-icons/hi";
 
-import userImg from '../assets/profile.jpg'
+import userImg from "../assets/profile.jpg";
+import { AuthContext } from "../context/AuthProvider";
+import { useNavigation, useLocation } from "react-router-dom";
 
 const SideBar = () => {
+  const location = useLocation();
+  const navigate = useNavigation();
+  const from = location.state?.form?.pathname || "/";
+
+  const { logout } = useContext(AuthContext);
+  const handleLogout = () => {
+    logout()
+      .then(() => {
+        
+        navigate(from, { replace: true });
+        alert("Sign-out successful!!!");
+      })
+      .catch((error) => {});
+  };
+
   return (
     <div>
       <Sidebar aria-label="Sidebar with logo branding example">
@@ -41,8 +58,8 @@ const SideBar = () => {
             <Sidebar.Item href="/login" icon={HiArrowSmRight}>
               Sign In
             </Sidebar.Item>
-            <Sidebar.Item href="/logout" icon={HiTable}>
-              Log Out
+            <Sidebar.Item icon={HiTable}>
+              <button onClick={handleLogout}>Log Out</button>
             </Sidebar.Item>
           </Sidebar.ItemGroup>
         </Sidebar.Items>
