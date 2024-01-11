@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { Link, useLoaderData } from "react-router-dom";
 import { Button } from "flowbite-react";
 import { HiOutlineArrowRight, HiShoppingCart } from "react-icons/hi";
@@ -6,6 +6,10 @@ import { Badge } from "flowbite-react";
 import OtherBooks from "../components/OtherBooks";
 
 const SingleBook = () => {
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   //get params data from loader
   const { _id, title, imageURL, pdfURL, author, description, genre } =
     useLoaderData();
